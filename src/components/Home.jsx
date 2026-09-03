@@ -157,15 +157,15 @@ function Home() {
                 Delivering restaurant-quality meals to your doorstep. Fresh, fast, and delicious.
               </p>
               <div className="social-links">
-                <a href="https://github.com/Vinit-Sahare-Dev" className="social-link" aria-label="GitHub">
+                <a href="https://github.com/imran-049-imran" className="social-link" aria-label="GitHub">
                   <span className="social-icon">🐙</span>
                   GitHub
                 </a>
-                <a href="https://linkedin.com/in/vinit-sahare" className="social-link" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/imran-attar-703637373/" className="social-link" aria-label="LinkedIn">
                   <span className="social-icon">💼</span>
                   LinkedIn
                 </a>
-                <a href="mailto:vinit.sahare.dev@email.com" className="social-link" aria-label="Email">
+                <a href="attarimran782@gmail.com" className="social-link" aria-label="Email">
                   <span className="social-icon">📧</span>
                   Email
                 </a>
@@ -195,15 +195,15 @@ function Home() {
             <div className="footer-section">
               <h4 className="footer-subtitle">Contact Info</h4>
               <div className="contact-info">
-                <p>📞 +91 9921349614</p>
+                <p>📞 +91 9503118284</p>
                 <p>📧 contact@freshcart.com</p>
-                <p>Ameerpeth,Hyderabad </p>
+                <p>Mumbai,Maharashtra </p>
               </div>
             </div>
           </div>
           
           <div className="footer-bottom">
-            <p>&copy; 2025 FreshCart. All rights reserved. | Crafted with ❤️ by Vinit Sahare</p>
+            <p>&copy; 2025 FreshCart. All rights reserved. | Crafted with ❤️ by Imran Attar</p>
           </div>
         </div>
       </footer>

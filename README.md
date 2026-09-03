@@ -4,6 +4,15 @@ A full-stack food delivery platform built with **React.js, Spring Boot, Spring S
 
 FreshCart allows users to browse food items, search and filter products, manage their shopping cart, authenticate securely, and place/manage orders.
 
+
+
+https://github.com/user-attachments/assets/34290b5c-50f9-45d8-ba9f-559713d75942
+
+https://youtu.be/M5UGuE57NR0
+
+
+
+
 ---
 
 ##  Overview

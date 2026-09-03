@@ -1,0 +1,214 @@
+import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import './Home.css'
+
+function Home() {
+  const [showNotification, setShowNotification] = useState(false)
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    // Check for profile saved message from sessionStorage
+    const profileSavedMessage = sessionStorage.getItem('profileSavedMessage')
+    if (profileSavedMessage) {
+      setShowNotification(true)
+      // Clear the message from sessionStorage
+      sessionStorage.removeItem('profileSavedMessage')
+      // Auto-hide notification after 5 seconds
+      const timer = setTimeout(() => {
+        setShowNotification(false)
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+
+    // Auto-play video with muted audio
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log('Video autoplay failed:', error)
+      })
+    }
+  }, [])
+
+  const categories = [
+    {
+      name: 'Vegetarian Delights',
+      path: '/freshcart/veg',
+      image: '🥗',
+      description: 'Fresh plant-based meals'
+    },
+    {
+      name: 'Non-Veg Specials',
+      path: '/freshcart/non-veg',
+      image: '🍗',
+      description: 'Premium meat dishes'
+    },
+    {
+      name: 'Dairy & Desserts',
+      path: '/freshcart/dairy',
+      image: '🍦',
+      description: 'Sweet treats & more'
+    }
+  ]
+
+  return (
+    <div className="home-container">
+      {/* Profile Saved Notification */}
+      {showNotification && (
+        <div className="notification-banner success">
+          <div className="notification-content">
+            <span className="notification-icon">✓</span>
+            <span className="notification-text">Profile updated successfully!</span>
+            <button 
+              className="notification-close" 
+              onClick={() => setShowNotification(false)}
+              aria-label="Close notification"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Video Background Section */}
+      <section className="video-hero-section">
+        <div className="video-background">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="background-video"
+          >
+            <source src="/bag.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="video-overlay"></div>
+        </div>
+        
+        {/* Hero Content Over Video */}
+        <div className="video-hero-content">
+          <h1 className="video-hero-title">
+            Restaurant Quality Food <span className="video-hero-highlight">Delivered</span>
+          </h1>
+          <p className="video-hero-subtitle">
+            Experience chef-crafted meals delivered hot and fresh to your doorstep. From gourmet dishes to comfort food.
+          </p>
+          <button className="video-hero-button">
+            Order Now
+          </button>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="categories-section">
+        <h2 className="section-title">
+          Explore Our Menu
+        </h2>
+        <div className="home-category-grid">
+          {categories.map((category, index) => (
+            <div key={index} className="home-category-card">
+              <div className="home-category-icon">
+                {category.image}
+              </div>
+              <h3 className="home-category-title">{category.name}</h3>
+              <p className="home-category-desc">{category.description}</p>
+              <Link to={category.path} className="home-category-link">
+                Explore →
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="features-section">
+        <div className="home-features-grid">
+          <div className="home-feature-item">
+            <div className="home-feature-icon">
+              <span>🚀</span>
+            </div>
+            <h3 className="home-feature-title">Fast Delivery</h3>
+            <p className="home-feature-desc">30-minutes </p>
+          </div>
+          <div className="home-feature-item">
+            <div className="home-feature-icon">
+              <span>👨‍🍳</span>
+            </div>
+            <h3 className="home-feature-title">Chef Crafted</h3>
+            <p className="home-feature-desc">Restaurant quality meals</p>
+          </div>
+          <div className="home-feature-item">
+            <div className="home-feature-icon">
+              <span>💳</span>
+            </div>
+            <h3 className="home-feature-title">Secure Payment</h3>
+            <p className="home-feature-desc">100% secure transactions</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Section */}
+      <footer className="home-footer">
+        <div className="footer-container">
+          <div className="footer-content">
+            <div className="footer-section">
+              <h3 className="footer-title">FreshCart</h3>
+              <p className="footer-desc">
+                Delivering restaurant-quality meals to your doorstep. Fresh, fast, and delicious.
+              </p>
+              <div className="social-links">
+                <a href="https://github.com/Vinit-Sahare-Dev" className="social-link" aria-label="GitHub">
+                  <span className="social-icon">🐙</span>
+                  GitHub
+                </a>
+                <a href="https://linkedin.com/in/vinit-sahare" className="social-link" aria-label="LinkedIn">
+                  <span className="social-icon">💼</span>
+                  LinkedIn
+                </a>
+                <a href="mailto:vinit.sahare.dev@email.com" className="social-link" aria-label="Email">
+                  <span className="social-icon">📧</span>
+                  Email
+                </a>
+              </div>
+            </div>
+            
+            <div className="footer-section">
+              <h4 className="footer-subtitle">Quick Links</h4>
+              <ul className="footer-links">
+                <li><Link to="/freshcart/veg">Vegetarian</Link></li>
+                <li><Link to="/freshcart/non-veg">Non-Veg</Link></li>
+                <li><Link to="/freshcart/dairy">Dairy</Link></li>
+                <li><Link to="/freshcart/cart">Cart</Link></li>
+              </ul>
+            </div>
+            
+            <div className="footer-section">
+              <h4 className="footer-subtitle">Support</h4>
+              <ul className="footer-links">
+                <li><a href="/help">Help Center</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Service</a></li>
+                <li><a href="/careers">Careers</a></li>
+              </ul>
+            </div>
+            
+            <div className="footer-section">
+              <h4 className="footer-subtitle">Contact Info</h4>
+              <div className="contact-info">
+                <p>📞 +91 9921349614</p>
+                <p>📧 contact@freshcart.com</p>
+                <p>Ameerpeth,Hyderabad </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="footer-bottom">
+            <p>&copy; 2025 FreshCart. All rights reserved. | Crafted with ❤️ by Vinit Sahare</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+export default Home
